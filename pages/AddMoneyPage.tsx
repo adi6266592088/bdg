@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Page } from '../App';
 import { IndianFlagIcon, QrCodeIcon, PaytmIcon, PhonePeIcon, GPayIcon, UpiIcon } from '../components/icons';
 
@@ -6,7 +6,28 @@ interface AddMoneyPageProps {
   onNavigate: (page: Page) => void;
 }
 
+type PaymentMethod = 'paytm' | 'phonepe' | 'gpay' | 'upi';
+
 const AddMoneyPage: React.FC<AddMoneyPageProps> = ({ onNavigate }) => {
+  const [selectedMethod, setSelectedMethod] = useState<PaymentMethod>('paytm');
+  const [utr, setUtr] = useState('');
+  const [showConfirmation, setShowConfirmation] = useState(false);
+
+  const handleSubmit = () => {
+    if (utr.trim().length === 0) {
+      alert('Please enter the UTR/Transaction ID.');
+      return;
+    }
+    setShowConfirmation(true);
+  };
+  
+  const handleConfirm = () => {
+    // In a real app, you would submit the data here.
+    alert(`Transaction submitted with UTR: ${utr} via ${selectedMethod}`);
+    setShowConfirmation(false);
+    setUtr(''); // Reset UTR after submission
+  };
+
   return (
     <div className="min-h-screen bg-gray-100 text-gray-800 p-4">
       {/* Header */}
@@ -44,21 +65,52 @@ const AddMoneyPage: React.FC<AddMoneyPageProps> = ({ onNavigate }) => {
         </div>
 
         <div className="flex justify-center items-center space-x-4 my-4">
+          <button
+            onClick={() => setSelectedMethod('paytm')}
+            className={`p-2 rounded-lg transition-all ${selectedMethod === 'paytm' ? 'ring-2 ring-blue-600 bg-blue-50' : 'opacity-60 hover:opacity-100'}`}
+            aria-pressed={selectedMethod === 'paytm'}
+            aria-label="Select Paytm"
+          >
             <PaytmIcon className="h-6" />
+          </button>
+          <button
+            onClick={() => setSelectedMethod('phonepe')}
+            className={`p-2 rounded-lg transition-all ${selectedMethod === 'phonepe' ? 'ring-2 ring-blue-600 bg-blue-50' : 'opacity-60 hover:opacity-100'}`}
+            aria-pressed={selectedMethod === 'phonepe'}
+            aria-label="Select PhonePe"
+          >
             <PhonePeIcon className="h-6" />
+          </button>
+          <button
+            onClick={() => setSelectedMethod('gpay')}
+            className={`p-2 rounded-lg transition-all ${selectedMethod === 'gpay' ? 'ring-2 ring-blue-600 bg-blue-50' : 'opacity-60 hover:opacity-100'}`}
+            aria-pressed={selectedMethod === 'gpay'}
+            aria-label="Select Google Pay"
+          >
             <GPayIcon className="h-8" />
+          </button>
+          <button
+            onClick={() => setSelectedMethod('upi')}
+            className={`p-2 rounded-lg transition-all ${selectedMethod === 'upi' ? 'ring-2 ring-blue-600 bg-blue-50' : 'opacity-60 hover:opacity-100'}`}
+            aria-pressed={selectedMethod === 'upi'}
+            aria-label="Select UPI"
+          >
             <UpiIcon className="h-6" />
+          </button>
         </div>
+
 
         <div className="flex items-center">
             <label className="text-sm font-bold text-red-500 mr-2">*UTR:</label>
             <input 
                 type="text"
                 placeholder="UTR(UPI Ref.ID) must be 12 digits"
+                value={utr}
+                onChange={(e) => setUtr(e.target.value)}
                 className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
         </div>
-        <button className="w-full bg-blue-600 text-white font-bold py-2.5 rounded-md mt-4">
+        <button onClick={handleSubmit} className="w-full bg-blue-600 text-white font-bold py-2.5 rounded-md mt-4">
             Submit
         </button>
       </div>
@@ -75,6 +127,38 @@ const AddMoneyPage: React.FC<AddMoneyPageProps> = ({ onNavigate }) => {
         </ol>
       </div>
 
+      {/* Confirmation Dialog */}
+      {showConfirmation && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" role="dialog" aria-modal="true" aria-labelledby="dialog-title">
+          <div className="bg-white p-6 rounded-lg shadow-xl max-w-sm w-full">
+            <h2 id="dialog-title" className="text-xl font-bold mb-4">Confirm Payment Details</h2>
+            <div className="space-y-3 text-left">
+              <p>
+                <span className="font-semibold text-gray-600">Payment Method:</span>
+                <span className="ml-2 font-medium capitalize">{selectedMethod}</span>
+              </p>
+              <p>
+                <span className="font-semibold text-gray-600">UTR / Ref. ID:</span>
+                <span className="ml-2 font-medium break-all">{utr}</span>
+              </p>
+            </div>
+            <div className="mt-6 flex justify-end space-x-3">
+              <button
+                onClick={() => setShowConfirmation(false)}
+                className="px-4 py-2 bg-gray-200 text-gray-800 rounded-md font-semibold hover:bg-gray-300"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={handleConfirm}
+                className="px-4 py-2 bg-blue-600 text-white rounded-md font-semibold hover:bg-blue-700"
+              >
+                Confirm
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

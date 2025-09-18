@@ -35,8 +35,16 @@ const App: React.FC = () => {
       case 'promotion':
         return <PromotionPage currentPage={currentPage} onNavigate={navigate} isLoggedIn={isLoggedIn} />;
       case 'account':
+        // Enforce login state: If user is not logged in, show the login page.
+        if (!isLoggedIn) {
+          return <LoginPage onNavigate={navigate} onLoginSuccess={handleLogin} />;
+        }
         return <AccountPage currentPage={currentPage} onNavigate={navigate} isLoggedIn={isLoggedIn} onLogout={handleLogout} />;
       case 'addMoney':
+        // Also a protected route
+        if (!isLoggedIn) {
+          return <LoginPage onNavigate={navigate} onLoginSuccess={handleLogin} />;
+        }
         return <AddMoneyPage onNavigate={navigate} />;
       case 'main':
       default:
