@@ -52,7 +52,7 @@ const AccountPage: React.FC<AccountPageProps> = ({ currentPage, onNavigate, isLo
           <div className="grid grid-cols-4 gap-2 text-center mt-4 text-gray-300">
             <button className="flex flex-col items-center space-y-1"><ARWalletIcon className="w-8 h-8" /><span className="text-xs font-semibold">ARWallet</span></button>
             <button onClick={() => onNavigate('addMoney')} className="flex flex-col items-center space-y-1"><DepositIcon className="w-8 h-8" /><span className="text-xs font-semibold">Deposit</span></button>
-            <button className="flex flex-col items-center space-y-1"><WithdrawIcon className="w-8 h-8" /><span className="text-xs font-semibold">Withdraw</span></button>
+            <button onClick={() => onNavigate('withdraw')} className="flex flex-col items-center space-y-1"><WithdrawIcon className="w-8 h-8" /><span className="text-xs font-semibold">Withdraw</span></button>
             <button className="flex flex-col items-center space-y-1"><VIPShieldIcon className="w-8 h-8" /><span className="text-xs font-semibold">VIP</span></button>
           </div>
         </div>
@@ -61,7 +61,7 @@ const AccountPage: React.FC<AccountPageProps> = ({ currentPage, onNavigate, isLo
           <HistoryCard icon={<GameHistoryIcon className="w-8 h-8" />} title="Game History" subtitle="My game history" />
           <HistoryCard icon={<TransactionHistoryIcon className="w-8 h-8" />} title="Transaction" subtitle="My transaction history" />
           <HistoryCard icon={<DepositHistoryIcon className="w-8 h-8" />} title="Deposit" subtitle="My deposit history" />
-          <HistoryCard icon={<WithdrawHistoryIcon className="w-8 h-8" />} title="Withdraw" subtitle="My withdraw history" />
+          <HistoryCard icon={<WithdrawHistoryIcon className="w-8 h-8" />} title="Withdraw" subtitle="My withdraw history" onClick={() => onNavigate('withdrawHistory')} />
         </div>
 
         <div className="bg-slate-800 rounded-lg shadow-lg text-gray-300">
@@ -94,14 +94,14 @@ const AccountPage: React.FC<AccountPageProps> = ({ currentPage, onNavigate, isLo
   );
 };
 
-const HistoryCard: React.FC<{icon: React.ReactNode; title: string; subtitle: string}> = ({ icon, title, subtitle }) => (
-  <div className="bg-slate-800 rounded-lg p-3 flex items-center shadow-lg">
+const HistoryCard: React.FC<{icon: React.ReactNode; title: string; subtitle: string; onClick?: () => void}> = ({ icon, title, subtitle, onClick }) => (
+  <button onClick={onClick} className="bg-slate-800 rounded-lg p-3 flex items-center shadow-lg text-left w-full hover:bg-slate-700 active:bg-slate-900 transition-colors disabled:opacity-50" disabled={!onClick}>
     {icon}
     <div className="ml-3">
       <p className="font-bold">{title}</p>
       <p className="text-xs text-gray-400">{subtitle}</p>
     </div>
-  </div>
+  </button>
 );
 
 const SettingsItem: React.FC<{icon: React.ReactNode; label: string; value?: string}> = ({ icon, label, value }) => (

@@ -1,4 +1,5 @@
 
+
 import React from 'react';
 import Header from './components/Header';
 import BottomNav from './components/BottomNav';
@@ -13,14 +14,14 @@ interface MainAppProps {
 }
 
 const games = [
-    { name: 'Wingo', imageUrl: 'https://picsum.photos/seed/wingo/200' },
-    { name: 'K3', imageUrl: 'https://picsum.photos/seed/k3/200' },
-    { name: '5D', imageUrl: 'https://picsum.photos/seed/5d/200' },
-    { name: 'Trx Win', imageUrl: 'https://picsum.photos/seed/trx/200' },
-    { name: 'Slots', imageUrl: 'https://picsum.photos/seed/slots/200' },
-    { name: 'Aviator', imageUrl: 'https://picsum.photos/seed/aviator/200' },
-    { name: 'Fishing', imageUrl: 'https://picsum.photos/seed/fishing/200' },
-    { name: 'Sports', imageUrl: 'https://picsum.photos/seed/sports/200' },
+    { name: 'Color Go', imageUrl: 'https://picsum.photos/seed/wingo/200', page: 'colorGo' as Page },
+    { name: 'K3', imageUrl: 'https://picsum.photos/seed/k3/200', page: 'colorGo' as Page },
+    { name: '5D', imageUrl: 'https://picsum.photos/seed/5d/200', page: 'colorGo' as Page },
+    { name: 'Trx Win', imageUrl: 'https://picsum.photos/seed/trx/200', page: 'colorGo' as Page },
+    { name: 'Slots', imageUrl: 'https://picsum.photos/seed/slots/200', page: 'colorGo' as Page },
+    { name: 'Aviator', imageUrl: 'https://picsum.photos/seed/aviator/200', page: 'aviator' as Page },
+    { name: 'Fishing', imageUrl: 'https://picsum.photos/seed/fishing/200', page: 'colorGo' as Page },
+    { name: 'Sports', imageUrl: 'https://picsum.photos/seed/sports/200', page: 'colorGo' as Page },
 ];
 
 const MainApp: React.FC<MainAppProps> = ({ currentPage, onNavigate, isLoggedIn }) => {
@@ -152,7 +153,14 @@ const MainApp: React.FC<MainAppProps> = ({ currentPage, onNavigate, isLoggedIn }
                 <h2 className="text-lg font-bold">All Games</h2>
             </div>
             <div className="grid grid-cols-4 gap-3">
-                {games.map(game => <GameCard key={game.name} {...game} />)}
+                {games.map(game => (
+                    <GameCard 
+                        key={game.name} 
+                        name={game.name}
+                        imageUrl={game.imageUrl}
+                        onClick={() => onNavigate(game.page)}
+                    />
+                ))}
             </div>
         </div>
 

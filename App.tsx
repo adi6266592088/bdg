@@ -5,8 +5,12 @@ import RegisterPage from './pages/RegisterPage';
 import PromotionPage from './pages/PromotionPage';
 import AccountPage from './pages/AccountPage';
 import AddMoneyPage from './pages/AddMoneyPage';
+import WithdrawPage from './pages/WithdrawPage';
+import ColorGoPage from './pages/ColorGoPage';
+import WithdrawalHistoryPage from './pages/WithdrawalHistoryPage';
+import AviatorPage from './pages/AviatorPage';
 
-export type Page = 'main' | 'login' | 'register' | 'promotion' | 'account' | 'addMoney';
+export type Page = 'main' | 'login' | 'register' | 'promotion' | 'account' | 'addMoney' | 'withdraw' | 'colorGo' | 'withdrawHistory' | 'aviator';
 
 const App: React.FC = () => {
   const [currentPage, setCurrentPage] = useState<Page>('main');
@@ -46,14 +50,38 @@ const App: React.FC = () => {
           return <LoginPage onNavigate={navigate} onLoginSuccess={handleLogin} />;
         }
         return <AddMoneyPage onNavigate={navigate} />;
+      case 'withdraw':
+        // Also a protected route
+        if (!isLoggedIn) {
+          return <LoginPage onNavigate={navigate} onLoginSuccess={handleLogin} />;
+        }
+        return <WithdrawPage onNavigate={navigate} />;
+      case 'colorGo':
+        // Also a protected route
+        if (!isLoggedIn) {
+          return <LoginPage onNavigate={navigate} onLoginSuccess={handleLogin} />;
+        }
+        return <ColorGoPage onNavigate={navigate} />;
+      case 'withdrawHistory':
+        // Also a protected route
+        if (!isLoggedIn) {
+          return <LoginPage onNavigate={navigate} onLoginSuccess={handleLogin} />;
+        }
+        return <WithdrawalHistoryPage onNavigate={navigate} />;
+      case 'aviator':
+        // Also a protected route
+        if (!isLoggedIn) {
+            return <LoginPage onNavigate={navigate} onLoginSuccess={handleLogin} />;
+        }
+        return <AviatorPage onNavigate={navigate} />;
       case 'main':
       default:
         return <MainApp currentPage={currentPage} onNavigate={navigate} isLoggedIn={isLoggedIn} />;
     }
   };
 
-  const bgColor = currentPage === 'addMoney' ? 'bg-gray-100' : 'bg-slate-800';
-  const mainContentBg = currentPage === 'addMoney' ? 'bg-gray-100' : 'bg-[#373542]';
+  const bgColor = currentPage === 'addMoney' || currentPage === 'withdraw' ? 'bg-gray-100' : 'bg-slate-800';
+  const mainContentBg = currentPage === 'addMoney' || currentPage === 'withdraw' ? 'bg-gray-100' : 'bg-[#373542]';
 
   return (
     <div className={`${bgColor} min-h-screen font-sans`}>

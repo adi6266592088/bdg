@@ -63,6 +63,14 @@ export const SpeakerIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
   </svg>
 );
 
+export const SpeakerXMarkIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
+  <svg {...props} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
+    <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 9.75 19.5 12m0 0 2.25 2.25M19.5 12l2.25-2.25M19.5 12h-2.25m-7.5 0h7.5m-7.5 0H3m12.75 9-1.5-1.5-1.5 1.5M12.75 3l-1.5 1.5-1.5-1.5M6.75 8.25l4.72-4.72a.75.75 0 0 1 1.28.53v15.88a.75.75 0 0 1-1.28.53l-4.72-4.72H4.51c-.88 0-1.704-.507-1.938-1.354A9.01 9.01 0 0 1 2.25 12c0-.83.112-1.633.322-2.396C2.806 8.756 3.63 8.25 4.51 8.25H6.75Z" />
+    <path strokeLinecap="round" strokeLinejoin="round" d="m21.75 9-6 6m0-6 6 6" />
+  </svg>
+);
+
+
 export const UserIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
   <svg {...props} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
     <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
@@ -315,7 +323,7 @@ export const FeedbackIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => 
 
 export const AnnouncementIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
     <svg {...props} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M10.34 3.94c.09-.542.56-.94 1.11-.94h1.093c.55 0 1.02.398 1.11.94l.149.894c.07.424.384.764.78.93.097.04.195.078.296.113a2.45 2.45 0 0 1 2.212-.346l.858-.434a1.125 1.125 0 0 1 1.342.492l.867 1.5c.273.472.014 1.06-.444 1.34l-.859.434a2.45 2.45 0 0 1-2.212.346 3.447 3.447 0 0 0-.296.113c-.396.166-.71.506-.78.93l-.149.894c-.09.542-.56.94-1.11.94h-1.093c-.55 0-1.02-.398-1.11-.94l-.149-.894a2.45 2.45 0 0 1-.78-.93 3.447 3.447 0 0 0-.296-.113 2.45 2.45 0 0 1-2.212.346l-.858.434a1.125 1.125 0 0 1-1.342-.492l-.867-1.5c-.273-.472-.014-1.06.444-1.34l.859-.434a2.45 2.45 0 0 1 2.212-.346c.101-.035.199-.073.296-.113.396-.166.71-.506.78-.93l.149-.894Z" />
+        <path strokeLinecap="round" strokeLinejoin="round" d="M10.34 3.94c.09-.542.56-.94 1.11-.94h1.093c.55 0 1.02.398 1.11.94l.149.894c.07.424.384.764.78.93.097.04.195.078.296.113a2.45 2.45 0 0 1 2.212-.346l.858-.434a1.125 1.125 0 0 1 1.342.492l.867 1.5c.273.472.014 1.06-.444 1.34l-.859.434a2.45 2.45 0 0 1-2.212.346 3.447 3.447 0 0 0-.296.113c-.396.166-.71.506-.78.93l-.149.894c-.09.542-.56.94-1.11.94h-1.093c-.55 0-1.02-.398-1.11-.94l-.149-.894a2.45 2.45 0 0 1-.78-.93 3.447 3.447 0 0 0-.296-.113 2.45 2.45 0 0 1-2.212.346l-.858.434a1.125 1.125 0 0 1-1.342-.492l-.867-1.5c-.273-.472-.014-1.06.444-1.34l.859-.434a2.45 2.45 0 0 1 2.212-.346c.101-.035.199-.073.296-.113.396-.166.71-.506-.78-.93l.149-.894Z" />
     </svg>
 );
 
@@ -449,5 +457,11 @@ export const UpiIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
     <path d="M30,15 L30,25 L35,25 L35,15 Z M40,15 L40,25 L45,25 L45,15 Z" fill="#E55D25"/>
     <path d="M50,15 L50,25 L55,25 L55,20 L65,20 L65,25 L70,25 L70,15 Z" fill="#E55D25"/>
     <path d="M75,15 L75,25 L80,25 L80,15 Z M85,15 L85,25 L90,25 L90,20 C87.5,20 87.5,15 85,15 Z" fill="#00A2DF"/>
+  </svg>
+);
+
+export const PlaneIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
+  <svg {...props} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M20.56,3.34a1,1,0,0,0-1-.08l-17,8a1,1,0,0,0,0,1.82l6.2,2.83,2.83,6.2a1,1,0,0,0,1.82,0l8-17A1,1,0,0,0,20.56,3.34ZM13,14.28,11.64,11.5,4,9.26l14.1-6.58Z"/>
   </svg>
 );
